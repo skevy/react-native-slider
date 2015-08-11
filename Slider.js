@@ -2,6 +2,7 @@
 
 var React = require('react-native');
 var {
+  Animated,
   PropTypes,
   StyleSheet,
   PanResponder,
@@ -183,12 +184,12 @@ var Slider = React.createClass({
     var touchOverflowStyle = this._getTouchOverflowStyle();
 
     return (
-      <View {...other} style={[mainStyles.container, style]} onLayout={this._measureContainer}>
-        <View
+      <Animated.View {...other} style={[mainStyles.container, style]} onLayout={this._measureContainer}>
+        <Animated.View
           style={[{backgroundColor: maximumTrackTintColor}, mainStyles.track, trackStyle]}
           onLayout={this._measureTrack} />
-        <View style={[mainStyles.track, trackStyle, minimumTrackStyle]} />
-        <View
+        <Animated.View style={[mainStyles.track, trackStyle, minimumTrackStyle]} />
+        <Animated.View
           ref={(thumb) => this.thumb = thumb}
           onLayout={this._measureThumb}
           style={[
@@ -196,12 +197,12 @@ var Slider = React.createClass({
             mainStyles.thumb, thumbStyle, {left: thumbLeft, ...valueVisibleStyle}
           ]}
         />
-        <View
+        <Animated.View
           style={[defaultStyles.touchArea, touchOverflowStyle]}
           {...this._panResponder.panHandlers}>
           {debugTouchArea === true && this._renderDebugThumbTouchRect()}
-        </View>
-      </View>
+        </Animated.View>
+      </Animated.View>
     );
   },
 
